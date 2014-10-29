@@ -65,8 +65,11 @@ public class Proyecto1{
 
 				break;
 				case 7: //Logs
-					for(int i=indiceLog-1;i>=0;i--)
-						System.out.println(logs[i]);
+					if(logs[0]!=null){
+						for(int i=indiceLog-1;i>=0;i--){
+							System.out.println(logs[i]);
+						}
+					}					
 				break;
 				case 8: //Salir del sistema
 
