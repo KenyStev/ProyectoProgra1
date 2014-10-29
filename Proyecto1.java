@@ -14,33 +14,65 @@ public class Proyecto1{
 
 		double caja = 0.0;
 		String nameCliente, nameProv, opt;
-		int codeProd, kgCOV, optMenu, indiceDescu = 0;
+		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0;
 		double subTotal, total, isv, precioCompra, banco = 0.0;
-		boolean isFirstOpen = true;	
+		boolean isFirstOpen = true, isOpen = false;	
 
 		do{
-			System.out.print("1. Abrir Caja");
-			System.out.print("2. Ventas");
-			System.out.print("3. Compras");
-			System.out.print("4. Estadistica");
-			System.out.print("5. Ver Inventario");
-			System.out.print("6. Cierre");
-			System.out.print("7. Logs");
-			System.out.print("8. Salir del Sistema\n");
+			System.out.println("1. Abrir Caja");
+			System.out.println("2. Ventas");
+			System.out.println("3. Compras");
+			System.out.println("4. Estadistica");
+			System.out.println("5. Ver Inventario");
+			System.out.println("6. Cierre");
+			System.out.println("7. Logs");
+			System.out.println("8. Salir del Sistema\n");
 
 			System.out.print("Escoja su Opcion: ");
-			optMenu = scan.next();
+			optMenu = scan.nextInt();
 
 			switch(optMenu){
-				case 1: break;
-				case 2: break;
-				case 3: break;
-				case 4: break;
-				case 5: break;
-				case 6: break;
-				case 7: break;
-				case 8: break;
+				case 1:	//Abrir caja
+					if(isFirstOpen){
+						System.out.print("Ingrese la cantidad de efectivo a depositar en caja: ");
+						double depositar = scan.nextDouble();
+						caja += depositar;
+						if(indiceLog<10){
+							logs[indiceLog++] = "Se abrió la caja y se deposito Lps. " + depositar;
+						}else{
+							for(int i = 1; i<logs.length;i++){
+								logs[i-1] = logs[i];
+							}
+							logs[indiceLog-1] = "Se abrió la caja y se deposito Lps. " + depositar;
+						}
+						
+					}
+					isOpen=true;
+				break;
+				case 2:	//Ventas
+
+				break;
+				case 3:	//Compras
+
+				break;
+				case 4: //Estadisticas
+
+				break;
+				case 5: //Ver Inventario
+
+				break;
+				case 6: //Cierre
+
+				break;
+				case 7: //Logs
+					for(int i=indiceLog-1;i>=0;i--)
+						System.out.println(logs[i]);
+				break;
+				case 8: //Salir del sistema
+
+				break;
 				default:
+				System.out.println("Opcion no existe!\n");
 			}
 
 		}while(optMenu!=8);
