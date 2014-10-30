@@ -4,18 +4,14 @@ public class Proyecto1{
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		String[] nameProd = {"Azucar","Avena","Trigo","Maiz"};
-		double[] precioProd = {30,25,32,20};
-		int[] kgPorProd = new int[4];
-		String[] logs = new String[10];
-		double[] descuentos = {0,0.05,0.1};
-		int[] compYVent = new int[2];
-		int[] starProd = new int[4];
+		String[] nameProd = {"Azucar","Avena","Trigo","Maiz"}, logs = new String[10];
+		double[] precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0};
+		int[] kgPorProd = {100, 100, 100, 100}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
 
 		double caja = 0.0;
-		String nameCliente, nameProv, opt;
-		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0;
-		double subTotal, total, isv, precioCompra, banco = 0.0;
+		String nameCliente, nameProv, opt, msj="";
+		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1;
+		double subTotal=0, total, isv=0.15, descuent=0, precioCompra, banco = 0.0;
 		boolean isFirstOpen = true, isOpen = false;	
 
 		do{
@@ -51,7 +47,62 @@ public class Proyecto1{
 					isOpen=true;
 				break;
 				case 2:	//Ventas
+					if(isOpen){
+						System.out.print("Ingrese nombre del Cliente: ");
+						nameCliente = scan.next();
+						msj = nameCliente + " ha comprado ";
+						do{
+							System.out.print("Ingrese el codigo del producto: ");
+							codeProd = scan.nextInt();
+							System.out.println("Producto: "+nameProd[--codeProd]+" Precio: "+precioProd[codeProd]);
+							System.out.print("Ingrese cantidad de Kg: ");
+							kgCOV = scan.nextInt();
+							if(kgPorProd[codeProd]>=kgCOV){
+								kgPorProd[codeProd] -= kgCOV;
+								msj += kgCOV+" kgs del producto "+nameProd[codeProd]+",";
+								subTotal += precioProd[codeProd]*kgCOV;
+								starProd[codeProd]++;
+							}else{
+								System.out.println("No hay esa cantidad disponible, solo se cuenta con: "+kgPorProd[codeProd]);
+							}
 
+							System.out.print("Desea comprar otro producto?: ");
+							opt = scan.next();
+						}while(opt.equalsIgnoreCase("SI"));
+
+						if(subTotal>0){
+							if(subTotal>=5000){
+								indiceDescu=2;
+							}else if(subTotal>=1000){
+								indiceDescu=1;
+							}
+							isv = subTotal * 0.15;
+							descuent = subTotal*descuentos[indiceDescu];
+							total = (subTotal-descuent)+isv;
+
+							compYVent[I]++;
+							ingresoYGasto[I] += subTotal; //El 15% no es parte de la ganancia
+							caja += total;
+							msj += " dejando un total de Lps. "+total+" en caja";
+
+							if(indiceLog<10){
+								logs[indiceLog++] = msj;
+							}else{
+								for(int i=1; i<logs.length; i++){
+									logs[i-1] = logs[i];
+								}
+								logs[indiceLog-1] = msj;
+							}
+
+							System.out.println("\n\t*\tSubtotal: "+subTotal);
+							System.out.println("\t*\tDescuento: "+descuent);
+							System.out.println("\t*\tImpuesto: "+isv);
+							System.out.println("\t*\tTotal: "+total+"\n");
+
+						}
+					}else{
+						System.out.println("La caja no esta abierta ");
+					}
 				break;
 				case 3:	//Compras
 					if(isOpen){
@@ -71,7 +122,8 @@ public class Proyecto1{
 							caja -= sub;
 							kgPorProd[--codeProd] += kgCOV;
 
-							compYVent[1]++;
+							compYVent[G]++;
+							ingresoYGasto[G] += sub;
 
 							if(indiceLog<10){
 								logs[indiceLog++] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto "
