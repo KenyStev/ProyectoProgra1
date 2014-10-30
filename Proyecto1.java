@@ -63,19 +63,25 @@ public class Proyecto1{
 						precioCompra=scan.nextDouble();
 						System.out.print("Ingrese la cantida en Kg a comprar del producto: ");
 						kgCOV=scan.nextInt();
-						if (caja>precioCompra) {
-							System.out.println("Total a pagar: Lps."+precioCompra);
-							caja -= precioCompra;
-							kgPorProd[codeProd] += kgCOV;
+
+						double sub = precioCompra*kgCOV;
+
+						if (caja>sub) {
+							System.out.println("Total a pagar: Lps. "+sub);
+							caja -= sub;
+							kgPorProd[--codeProd] += kgCOV;
+
+							compYVent[1]++;
+
 							if(indiceLog<10){
-								logs[indiceLog++] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto"
-								+nameProd[codeProd]+','+"con un gasto incurrido de Lps"+precioCompra;
+								logs[indiceLog++] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto "
+								+nameProd[codeProd]+','+" con un gasto incurrido de Lps. "+sub;
 							}else{
 								for(int i = 1; i<logs.length;i++){
 									logs[i-1] = logs[i];
 								}
-								logs[indiceLog-1] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto"
-								+nameProd[codeProd]+','+"con un gasto incurrido de Lps"+precioCompra;
+								logs[indiceLog-1] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto "
+								+nameProd[codeProd]+','+" con un gasto incurrido de Lps "+sub;
 							}	
 						}
 						else{
