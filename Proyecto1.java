@@ -54,6 +54,37 @@ public class Proyecto1{
 
 				break;
 				case 3:	//Compras
+					if(isOpen){
+						System.out.print("Ingrese el nombre del proveedor: ");
+						nameProv=scan.next();
+						System.out.print("Ingrese el codigo del producto: ");
+						codeProd=scan.nextInt();
+						System.out.print("Ingrese el precio de compra: ");
+						precioCompra=scan.nextDouble();
+						System.out.print("Ingrese la cantida en Kg a comprar del producto: ");
+						kgCOV=scan.nextInt();
+						if (caja>precioCompra) {
+							System.out.println("Total a pagar: Lps."+precioCompra);
+							caja -= precioCompra;
+							kgPorProd[codeProd] += kgCOV;
+							if(indiceLog<10){
+								logs[indiceLog++] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto"
+								+nameProd[codeProd]+','+"con un gasto incurrido de Lps"+precioCompra;
+							}else{
+								for(int i = 1; i<logs.length;i++){
+									logs[i-1] = logs[i];
+								}
+								logs[indiceLog-1] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto"
+								+nameProd[codeProd]+','+"con un gasto incurrido de Lps"+precioCompra;
+							}	
+						}
+						else{
+							System.out.println("No Se Puede Pagar Compra");
+						}
+
+					}else{
+						System.out.println("La caja no esta abierta ");
+					}
 
 				break;
 				case 4: //Estadisticas
