@@ -19,14 +19,15 @@ public class Proyecto1{
 		boolean isFirstOpen = true, isOpen = false;	
 
 		do{
-			System.out.println("1. Abrir Caja");
-			System.out.println("2. Ventas");
-			System.out.println("3. Compras");
-			System.out.println("4. Estadistica");
-			System.out.println("5. Ver Inventario");
-			System.out.println("6. Cierre");
-			System.out.println("7. Logs");
-			System.out.println("8. Salir del Sistema\n");
+			System.out.println("***** MENU DEL SISTEMA *****\n");
+			System.out.println("\t1. Abrir Caja");
+			System.out.println("\t2. Ventas");
+			System.out.println("\t3. Compras");
+			System.out.println("\t4. Estadistica");
+			System.out.println("\t5. Ver Inventario");
+			System.out.println("\t6. Cierre");
+			System.out.println("\t7. Logs");
+			System.out.println("\t8. Salir del Sistema\n");
 
 			System.out.print("Escoja su Opcion: ");
 			optMenu = scan.nextInt();
@@ -71,9 +72,7 @@ public class Proyecto1{
 						}
 					}					
 				break;
-				case 8: //Salir del sistema
-
-				break;
+				case 8: /*Salir del sistema*/ break;
 				default:
 				System.out.println("Opcion no existe!\n");
 			}
