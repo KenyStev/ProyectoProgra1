@@ -6,12 +6,12 @@ public class Proyecto1{
 
 		String[] nameProd = {"Azucar","Avena","Trigo","Maiz"}, logs = new String[10];
 		double[] precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0};
-		int[] kgPorProd = {100, 100, 100, 100}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
+		int[] kgPorProd = {0, 0, 0, 0}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
 
 		double caja = 0.0;
 		String nameCliente, nameProv, opt, msj="";
 		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1;
-		double subTotal=0, total, isv=0.15, descuent=0, precioCompra, banco = 0.0;
+		double subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0;
 		boolean isFirstOpen = true, isOpen = false;	
 
 		do{
