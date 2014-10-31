@@ -9,7 +9,7 @@ public class Proyecto1{
 		int[] kgPorProd = {0, 0, 0, 0}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
 
 		double caja = 0.0;
-		String nameCliente, nameProv, opt, msj="";
+		String nameCliente, nameProv, opt, msj;
 		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1;
 		double subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0;
 		boolean isFirstOpen = true, isOpen = false;	
@@ -99,6 +99,8 @@ public class Proyecto1{
 							System.out.println("\t*\tImpuesto: "+isv);
 							System.out.println("\t*\tTotal: "+total+"\n");
 
+							subTotal=0;
+
 						}
 					}else{
 						System.out.println("La caja no esta abierta ");
@@ -156,14 +158,16 @@ public class Proyecto1{
 				break;
 				case 7: //Logs
 					if(logs[0]!=null){
-						for(int i=indiceLog-1;i>=0;i--){
-							System.out.println(logs[i]);
+						System.out.println();
+						for(int c=1, i=indiceLog-1;i>=0;i--, c++){
+							System.out.println("\t"+c+". "+logs[i]);
 						}
+						System.out.println();
 					}					
 				break;
 				case 8: /*Salir del sistema*/ break;
 				default:
-				System.out.println("Opcion no existe!\n");
+				System.out.println("\nOpcion no existe!\n");
 			}
 
 		}while(optMenu!=8);
