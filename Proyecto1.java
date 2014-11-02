@@ -5,13 +5,13 @@ public class Proyecto1{
 		Scanner scan = new Scanner(System.in);
 
 		String[] nameProd = {"Azucar","Avena","Trigo","Maiz"}, logs = new String[10];
-		double[] precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0};
+		double[] precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0}, ingresoYGastoH={0.0,0.0}/*ingreso y gasto historico*/;
 		int[] kgPorProd = {0, 0, 0, 0}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
 
 		double caja = 0.0;
 		String nameCliente, nameProv, opt, msj;
-		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1;
-		double subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0;
+		int codeProd=0, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1, mayor=starProd[0];
+		double subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0, ganPerd=0.0, ganPerdH=0.0;
 		boolean isFirstOpen = true, isOpen = false;	
 
 		do{
@@ -82,6 +82,7 @@ public class Proyecto1{
 
 							compYVent[I]++;
 							ingresoYGasto[I] += subTotal; //El 15% no es parte de la ganancia
+							ingresoYGastoH[I] += subTotal;
 							caja += total;
 							msj += " dejando un total de Lps. "+total+" en caja";
 
@@ -126,6 +127,7 @@ public class Proyecto1{
 
 							compYVent[G]++;
 							ingresoYGasto[G] += sub;
+							ingresoYGastoH[G] += sub;
 
 							if(indiceLog<10){
 								logs[indiceLog++] = "Se ha comprado a "+nameProv+" "+kgCOV+"kgs del producto "
@@ -148,9 +150,44 @@ public class Proyecto1{
 
 				break;
 				case 4: //Estadisticas
+					System.out.println("Cantidad actual en caja: "+caja);
+					System.out.println("Numero de compras: "+compYVent[I]+"\nNumero de Ventas: "+compYVent[G]);
+					System.out.println("Volumen total de Compras: Lps "+ingresoYGasto[G]+", de ventas: Lps "+ingresoYGasto[I]);
+					if(ingresoYGasto[I]>ingresoYGasto[G]){
+						ganPerd= ingresoYGasto[I]-ingresoYGasto[G];
+						System.out.println("La ganancia del dia es: Lps "+ganPerd);
+					}
+					else{
+						ganPerd= ingresoYGasto[G]-ingresoYGasto[I];
+						System.out.println("La perdida del dia es: Lps "+ganPerd);	
+					}
 
+					for (int f=1; f < starProd.length; f++) {
+						if (starProd[f] > mayor) {
+							mayor = starProd[f];
+							codeProd = f;
+						}
+						
+					}
+
+					System.out.println("El producto estrella es: "+nameProd[codeProd]);
+					System.out.println("Saldo actual en el banco: "+banco);
+					if (ingresoYGastoH[I]>ingresoYGastoH[G]) {
+						ganPerdH = ingresoYGastoH[I] - ingresoYGastoH[G];
+						System.out.println("La ganancia historica es"+ganPerdH);
+					}
+					else{
+						ganPerdH = ingresoYGastoH[G]-ingresoYGastoH[I];
+						System.out.println("La perdida historica es: "+ganPerdH);
+					}
+					
 				break;
 				case 5: //Ver Inventario
+				System.out.println("--------INVENTARIO DE PRODUCTOS------");
+				System.out.println("Azucar: "+kgPorProd[0]+" kg");
+				System.out.println("Avena: "+kgPorProd[1]+" kg");
+				System.out.println("Trigo: "+kgPorProd[2]+" kg");
+				System.out.println("Maiz: "+kgPorProd[3]+" kg");
 
 				break;
 				case 6: //Cierre
