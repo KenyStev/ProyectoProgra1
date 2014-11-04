@@ -6,7 +6,7 @@ public class Proyecto1{
 
 		String[] nameProd = {"Azucar","Avena","Trigo","Maiz"}, logs = new String[10];
 		double[] precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0}, ingresoYGastoH={0.0,0.0}/*ingreso y gasto historico*/;
-		int[] kgPorProd = {0, 0, 0, 0}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
+		int[] kgPorProd = {100, 100, 100, 100}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
 
 		double caja = 0.0, subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0, depositoBanc=0, ganPerd=0.0, ganPerdH=0.0;
 		String nameCliente, nameProv, opt, msj;
@@ -43,6 +43,8 @@ public class Proyecto1{
 							logs[indiceLog-1] = "Se abrió la caja y se deposito Lps. " + depositar;
 						}
 						
+					}else{
+						isFirstOpen=true;
 					}
 					isOpen=true;
 				break;
@@ -81,8 +83,8 @@ public class Proyecto1{
 							total = (subTotal-descuent)+isv;
 
 							compYVent[I]++;
-							ingresoYGasto[I] += subTotal; //El 15% no es parte de la ganancia?
-							ingresoYGastoH[I] += subTotal;
+							ingresoYGasto[I] += total; //El 15% no es parte de la ganancia?
+							ingresoYGastoH[I] += total;
 							caja += total;
 							msj += " dejando un total de Lps. "+total+" en caja";
 
