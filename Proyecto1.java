@@ -83,7 +83,7 @@ public class Proyecto1{
 							total = (subTotal-descuent)+isv;
 
 							compYVent[I]++;
-							ingresoYGasto[I] += total; //El 15% no es parte de la ganancia?
+							ingresoYGasto[I] += total;
 							ingresoYGastoH[I] += total;
 							caja += total;
 							msj += " dejando un total de Lps. "+total+" en caja";
@@ -97,6 +97,7 @@ public class Proyecto1{
 								logs[indiceLog-1] = msj;
 							}
 
+							System.out.println("***** FACTURA *****");
 							System.out.println("\n\t*\tSubtotal: "+subTotal);
 							System.out.println("\t*\tDescuento: "+descuent);
 							System.out.println("\t*\tImpuesto: "+isv);
@@ -153,6 +154,7 @@ public class Proyecto1{
 
 				break;
 				case 4: //Estadisticas
+					System.out.println("***** Estadisticas *****");
 					System.out.println("\nCantidad actual en caja: "+caja);
 					System.out.println("Numero de compras: "+compYVent[G]+"\nNumero de Ventas: "+compYVent[I]);
 					System.out.println("Volumen total de Compras: Lps "+ingresoYGasto[G]+", de ventas: Lps "+ingresoYGasto[I]);
