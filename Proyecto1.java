@@ -35,12 +35,12 @@ public class Proyecto1{
 						caja += depositar;
 						//Los logs solo van si la caja se abre por primera vez?
 						if(indiceLog<10){
-							logs[indiceLog++] = "Se abrió la caja y se deposito Lps. " + depositar;
+							logs[indiceLog++] = "Se abri\u00d3 la caja y se deposito Lps. " + depositar;
 						}else{
 							for(int i = 1; i<logs.length;i++){
 								logs[i-1] = logs[i];
 							}
-							logs[indiceLog-1] = "Se abrió la caja y se deposito Lps. " + depositar;
+							logs[indiceLog-1] = "Se abri\u00d3 la caja y se deposito Lps. " + depositar;
 						}
 						
 					}else{
@@ -189,11 +189,9 @@ public class Proyecto1{
 				break;
 				case 5: //Ver Inventario
 					System.out.println("--------INVENTARIO DE PRODUCTOS------");
-					System.out.println("Azucar: "+kgPorProd[0]+" kg");
-					System.out.println("Avena: "+kgPorProd[1]+" kg");
-					System.out.println("Trigo: "+kgPorProd[2]+" kg");
-					System.out.println("Maiz: "+kgPorProd[3]+" kg");
-
+					for (int i = 0; i < kgPorProd.length;i++ ) {
+						System.out.println('\t'+nameProd[i]+" "+kgPorProd[i]+" kg");
+					}
 				break;
 				case 6: //Cierre
 					if(isOpen){
