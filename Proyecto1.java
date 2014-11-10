@@ -54,8 +54,15 @@ public class Proyecto1{
 						nameCliente = scan.next();
 						msj = nameCliente + " ha comprado ";
 						do{
-							System.out.print("Ingrese el codigo del producto: ");
-							codeProd = scan.nextInt();
+							do{
+								System.out.print("Ingrese el codigo del producto: ");
+								codeProd = scan.nextInt();
+
+								if(codeProd>nameProd.length){
+									System.out.println("Codigo del producto erroneo!!!");
+								}
+							}while(codeProd>nameProd.length);
+
 							System.out.println("Producto: "+nameProd[--codeProd]+" Precio: "+precioProd[codeProd]);
 							System.out.print("Ingrese cantidad de Kg: ");
 							kgCOV = scan.nextInt();
