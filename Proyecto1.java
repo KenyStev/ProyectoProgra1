@@ -5,12 +5,12 @@ public class Proyecto1{
 		Scanner scan = new Scanner(System.in);
 
 		String[] nameProd = {"Azucar","Avena","Trigo","Maiz"}, logs = new String[10];
-		double[] precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0}, ingresoYGastoH={0.0,0.0}/*ingreso y gasto historico*/;
-		int[] kgPorProd = {100, 100, 100, 100}, compYVent = {0, 0}, starProd = {0, 0, 0, 0};
+		double[] kgPorProd = {100, 100, 100, 100}, precioProd = {30,25,32,20}, descuentos = {0,0.05,0.1}, ingresoYGasto = {0.0, 0.0}, ingresoYGastoH={0.0,0.0}/*ingreso y gasto historico*/;
+		int[] compYVent = {0, 0}, starProd = {0, 0, 0, 0};
 
-		double caja = 0.0, subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0, depositoBanc=0, ganPerd=0.0, ganPerdH=0.0;
+		double caja = 0.0, kgCOV, subTotal=0, total, isv, descuent=0, precioCompra, banco = 0.0, depositoBanc=0, ganPerd=0.0, ganPerdH=0.0;
 		String nameCliente, nameProv, opt, msj;
-		int codeProd, kgCOV, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1, mayor;
+		int codeProd, optMenu, indiceDescu = 0, indiceLog = 0 , I=0, G=1, mayor;
 		boolean isFirstOpen = true, isOpen = false;	
 
 		do{
@@ -65,7 +65,7 @@ public class Proyecto1{
 
 							System.out.println("Producto: "+nameProd[--codeProd]+" Precio: "+precioProd[codeProd]);
 							System.out.print("Ingrese cantidad de Kg: ");
-							kgCOV = scan.nextInt();
+							kgCOV = scan.nextDouble();
 							if(kgPorProd[codeProd]>=kgCOV){
 								kgPorProd[codeProd] -= kgCOV;
 								msj += kgCOV+" kgs del producto "+nameProd[codeProd]+",";
@@ -127,7 +127,7 @@ public class Proyecto1{
 						System.out.print("Ingrese el precio de compra: ");
 						precioCompra=scan.nextDouble();
 						System.out.print("Ingrese la cantida en Kg a comprar del producto: ");
-						kgCOV=scan.nextInt();
+						kgCOV=scan.nextDouble();
 
 						double sub = precioCompra*kgCOV; //El precio de compra es por kg
 
