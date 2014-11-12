@@ -122,8 +122,14 @@ public class Proyecto1{
 					if(isOpen){
 						System.out.print("Ingrese el nombre del proveedor: ");
 						nameProv=scan.next();
-						System.out.print("Ingrese el codigo del producto: ");
-						codeProd=scan.nextInt();
+						do{
+							System.out.print("Ingrese el codigo del producto: ");
+							codeProd=scan.nextInt();
+
+							if(codeProd>nameProd.length){
+								System.out.println("Codigo del producto erroneo!!!");
+							}
+						}while(codeProd>nameProd.length);
 						System.out.print("Ingrese el precio de compra: ");
 						precioCompra=scan.nextDouble();
 						System.out.print("Ingrese la cantida en Kg a comprar del producto: ");
