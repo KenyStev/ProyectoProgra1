@@ -130,8 +130,14 @@ public class Proyecto1RolandoKevin{
 								System.out.println("Codigo del producto erroneo!!!");
 							}
 						}while(codeProd>nameProd.length);
-						System.out.print("Ingrese el precio de compra: ");
-						precioCompra=scan.nextDouble();
+						do{
+							System.out.print("Ingrese el precio de compra: ");
+							precioCompra=scan.nextDouble();
+
+							if (precioCompra<=0) {
+								System.out.println("El precio debe ser mayor que 0");
+							}
+						}while(precioCompra<=0);
 						System.out.print("Ingrese la cantida en Kg a comprar del producto: ");
 						kgCOV=scan.nextDouble();
 
